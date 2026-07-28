@@ -1,0 +1,469 @@
+/* ============================================================
+   AI Email Security Simulation
+   Module 4.3.1
+   Global Layout & Theme
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   Reset
+------------------------------------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------------------------------------
+   Theme
+------------------------------------------------------------ */
+
+:root {
+
+    --bg: #0b1220;
+    --surface: #172033;
+    --surface-light: #1f2b42;
+
+    --border: #2e3c58;
+
+    --text: #f4f7fb;
+    --text-muted: #9ca9bf;
+
+    --primary: #3b82f6;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    --shadow:
+        0 10px 25px rgba(0,0,0,.35);
+
+    --radius: 14px;
+
+    --transition: .25s ease;
+}
+
+
+/* ------------------------------------------------------------
+   Body
+------------------------------------------------------------ */
+
+body {
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family:
+
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    line-height: 1.5;
+
+}
+
+
+/* ------------------------------------------------------------
+   Main Wrapper
+------------------------------------------------------------ */
+
+.page {
+
+    max-width: 1600px;
+
+    margin: auto;
+
+    padding: 30px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Headings
+------------------------------------------------------------ */
+
+h1 {
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+
+}
+
+h2 {
+
+    margin-bottom: 18px;
+
+    font-size: 22px;
+
+}
+
+h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Paragraphs
+------------------------------------------------------------ */
+
+p {
+
+    color: var(--text-muted);
+
+}
+
+
+/* ------------------------------------------------------------
+   Sections
+------------------------------------------------------------ */
+
+section {
+
+    margin-top: 35px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Header
+------------------------------------------------------------ */
+
+header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+/* ------------------------------------------------------------
+   Controls
+------------------------------------------------------------ */
+
+.controls {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.controls label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 15px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Buttons
+------------------------------------------------------------ */
+
+button {
+
+    cursor: pointer;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding:
+
+        12px
+        24px;
+
+    background:
+
+        var(--primary);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+
+}
+
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    filter: brightness(110%);
+
+}
+
+
+button:active {
+
+    transform: scale(.98);
+
+}
+
+
+/* ------------------------------------------------------------
+   Dashboard Grid
+------------------------------------------------------------ */
+
+.dashboard {
+
+    display: grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr
+        1fr;
+
+    gap: 24px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Generic Panel
+------------------------------------------------------------ */
+
+.panel {
+
+    background:
+
+        var(--surface);
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius:
+
+        var(--radius);
+
+    padding: 22px;
+
+    box-shadow:
+
+        var(--shadow);
+
+    min-height: 520px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Email Container
+------------------------------------------------------------ */
+
+.email {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Horizontal Rule
+------------------------------------------------------------ */
+
+hr {
+
+    border: none;
+
+    border-top:
+
+        1px solid var(--border);
+
+    margin:
+
+        15px 0;
+
+}
+
+
+/* ------------------------------------------------------------
+   Code / JSON / Email
+------------------------------------------------------------ */
+
+pre {
+
+    background:
+
+        #0f1727;
+
+    border:
+
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    overflow-x: auto;
+
+    white-space: pre-wrap;
+
+    word-wrap: break-word;
+
+    color:
+
+        #dbeafe;
+
+    font-size: 14px;
+
+    min-height: 120px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Footer
+------------------------------------------------------------ */
+
+footer {
+
+    margin-top: 40px;
+
+    padding-top: 20px;
+
+    border-top:
+
+        1px solid var(--border);
+
+    color:
+
+        var(--text-muted);
+
+    text-align: center;
+
+    font-size: 14px;
+
+}
+
+
+/* ------------------------------------------------------------
+   Utility Classes
+------------------------------------------------------------ */
+
+.hidden {
+
+    display: none;
+
+}
+
+.center {
+
+    text-align: center;
+
+}
+
+.mt-20 {
+
+    margin-top: 20px;
+
+}
+
+.mb-20 {
+
+    margin-bottom: 20px;
+
+}
+
+.text-success {
+
+    color: var(--success);
+
+}
+
+.text-warning {
+
+    color: var(--warning);
+
+}
+
+.text-danger {
+
+    color: var(--danger);
+
+}
+
+
+/* ------------------------------------------------------------
+   Responsive
+------------------------------------------------------------ */
+
+@media (max-width: 1200px) {
+
+    .dashboard {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .page {
+
+        padding: 18px;
+
+    }
+
+    header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .controls {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+    button {
+
+        width: 100%;
+
+    }
+
+}
