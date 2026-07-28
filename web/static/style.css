@@ -1,13 +1,6 @@
-/* ============================================================
-   AI Email Security Simulation
-   Module 4.3.1
-   Global Layout & Theme
-   ============================================================ */
-
-
-/* ------------------------------------------------------------
-   Reset
------------------------------------------------------------- */
+/* ==============================
+   Global
+============================== */
 
 * {
     margin: 0;
@@ -15,875 +8,227 @@
     box-sizing: border-box;
 }
 
-
-/* ------------------------------------------------------------
-   Theme
------------------------------------------------------------- */
-
-:root {
-
-    --bg: #0b1220;
-    --surface: #172033;
-    --surface-light: #1f2b42;
-
-    --border: #2e3c58;
-
-    --text: #f4f7fb;
-    --text-muted: #9ca9bf;
-
-    --primary: #3b82f6;
-    --success: #22c55e;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-
-    --shadow:
-        0 10px 25px rgba(0,0,0,.35);
-
-    --radius: 14px;
-
-    --transition: .25s ease;
-}
-
-
-/* ------------------------------------------------------------
-   Body
------------------------------------------------------------- */
-
 body {
-
-    background: var(--bg);
-
-    color: var(--text);
-
-    font-family:
-
-        Inter,
-        Segoe UI,
-        Arial,
-        sans-serif;
-
-    line-height: 1.5;
-
+    background: #0f172a;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-
-/* ------------------------------------------------------------
-   Main Wrapper
------------------------------------------------------------- */
 
 .page {
-
-    max-width: 1600px;
-
+    width: 95%;
+    max-width: 1400px;
     margin: auto;
-
-    padding: 30px;
-
+    padding: 25px;
 }
 
-
-/* ------------------------------------------------------------
-   Headings
------------------------------------------------------------- */
-
-h1 {
-
-    font-size: 34px;
-
-    font-weight: 700;
-
-    margin-bottom: 6px;
-
-}
-
-h2 {
-
-    margin-bottom: 18px;
-
-    font-size: 22px;
-
-}
-
-h3 {
-
-    font-size: 17px;
-
+h1, h2 {
     margin-bottom: 10px;
-
 }
-
-
-/* ------------------------------------------------------------
-   Paragraphs
------------------------------------------------------------- */
-
-p {
-
-    color: var(--text-muted);
-
-}
-
-
-/* ------------------------------------------------------------
-   Sections
------------------------------------------------------------- */
 
 section {
-
-    margin-top: 35px;
-
+    margin-top: 30px;
 }
 
-
-/* ------------------------------------------------------------
+/* ==============================
    Header
------------------------------------------------------------- */
+============================== */
 
 header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
-    gap: 20px;
-
+    border-bottom: 1px solid #334155;
     padding-bottom: 20px;
-
-    border-bottom: 1px solid var(--border);
-
 }
-
-
-/* ------------------------------------------------------------
-   Controls
------------------------------------------------------------- */
 
 .controls {
-
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
 }
-
-
-.controls label {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 15px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Buttons
------------------------------------------------------------- */
 
 button {
-
-    cursor: pointer;
-
-    border: none;
-
-    border-radius: 10px;
-
-    padding:
-
-        12px
-        24px;
-
-    background:
-
-        var(--primary);
-
+    background: #2563eb;
     color: white;
-
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
     font-size: 15px;
-
-    font-weight: 600;
-
-    transition: var(--transition);
-
 }
-
 
 button:hover {
-
-    transform: translateY(-2px);
-
-    filter: brightness(110%);
-
+    background: #1d4ed8;
 }
 
-
-button:active {
-
-    transform: scale(.98);
-
-}
-
-
-/* ------------------------------------------------------------
-   Dashboard Grid
------------------------------------------------------------- */
-
-.dashboard {
-
-    display: grid;
-
-    grid-template-columns:
-
-        1fr
-        1fr
-        1fr;
-
-    gap: 24px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Generic Panel
------------------------------------------------------------- */
-
-.panel {
-
-    background:
-
-        var(--surface);
-
-    border:
-
-        1px solid var(--border);
-
-    border-radius:
-
-        var(--radius);
-
-    padding: 22px;
-
-    box-shadow:
-
-        var(--shadow);
-
-    min-height: 520px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Email Container
------------------------------------------------------------- */
-
-.email {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 16px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Horizontal Rule
------------------------------------------------------------- */
-
-hr {
-
-    border: none;
-
-    border-top:
-
-        1px solid var(--border);
-
-    margin:
-
-        15px 0;
-
-}
-
-
-/* ------------------------------------------------------------
-   Code / JSON / Email
------------------------------------------------------------- */
-
-pre {
-
-    background:
-
-        #0f1727;
-
-    border:
-
-        1px solid var(--border);
-
-    border-radius: 10px;
-
-    padding: 15px;
-
-    overflow-x: auto;
-
-    white-space: pre-wrap;
-
-    word-wrap: break-word;
-
-    color:
-
-        #dbeafe;
-
-    font-size: 14px;
-
-    min-height: 120px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Footer
------------------------------------------------------------- */
-
-footer {
-
-    margin-top: 40px;
-
-    padding-top: 20px;
-
-    border-top:
-
-        1px solid var(--border);
-
-    color:
-
-        var(--text-muted);
-
-    text-align: center;
-
-    font-size: 14px;
-
-}
-
-
-/* ------------------------------------------------------------
-   Utility Classes
------------------------------------------------------------- */
-
-.hidden {
-
-    display: none;
-
-}
-
-.center {
-
-    text-align: center;
-
-}
-
-.mt-20 {
-
-    margin-top: 20px;
-
-}
-
-.mb-20 {
-
-    margin-bottom: 20px;
-
-}
-
-.text-success {
-
-    color: var(--success);
-
-}
-
-.text-warning {
-
-    color: var(--warning);
-
-}
-
-.text-danger {
-
-    color: var(--danger);
-
-}
-
-
-/* ------------------------------------------------------------
-   Responsive
------------------------------------------------------------- */
-
-@media (max-width: 1200px) {
-
-    .dashboard {
-
-        grid-template-columns: 1fr;
-
-    }
-
-}
-
-
-@media (max-width: 768px) {
-
-    .page {
-
-        padding: 18px;
-
-    }
-
-    header {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-    }
-
-    .controls {
-
-        width: 100%;
-
-        justify-content: space-between;
-
-    }
-
-    button {
-
-        width: 100%;
-
-    }
-
-}
-
-/* ============================================================
-   Module 4.3.2
-   Pipeline Cards & Animations
-   ============================================================ */
-
-
-/* ------------------------------------------------------------
-   Pipeline Layout
------------------------------------------------------------- */
+/* ==============================
+   Pipeline
+============================== */
 
 .pipeline {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     align-items: center;
-
-    gap: 18px;
-
-    margin-top: 25px;
-
+    gap: 12px;
+    margin-top: 20px;
 }
-
-
-/* ------------------------------------------------------------
-   Pipeline Arrow
------------------------------------------------------------- */
 
 .arrow {
-
     font-size: 28px;
-
-    color: var(--primary);
-
-    font-weight: bold;
-
-    user-select: none;
-
-    transition: var(--transition);
-
+    color: #60a5fa;
 }
-
-
-/* ------------------------------------------------------------
-   Agent Card
------------------------------------------------------------- */
 
 .agent-card {
-
-    width: 180px;
-
-    min-height: 135px;
-
-    background: var(--surface);
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    padding: 18px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    align-items: center;
-
+    width: 170px;
+    min-height: 110px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 15px;
     text-align: center;
-
-    transition: all .35s ease;
-
-    box-shadow: var(--shadow);
-
-    position: relative;
-
-    overflow: hidden;
-
+    transition: .3s;
 }
-
-
-/* subtle top accent */
-
-.agent-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    right: 0;
-
-    height: 4px;
-
-    background: var(--primary);
-
-    opacity: .15;
-
-}
-
-
-/* ------------------------------------------------------------
-   Card Title
------------------------------------------------------------- */
 
 .agent-card h3 {
-
     font-size: 16px;
-
-    font-weight: 600;
-
-    line-height: 1.35;
-
+    margin-bottom: 15px;
 }
-
-
-/* ------------------------------------------------------------
-   Status Badge
------------------------------------------------------------- */
 
 .status {
-
     display: inline-block;
-
-    margin-top: 12px;
-
-    padding: 6px 12px;
-
-    border-radius: 999px;
-
+    background: #475569;
+    padding: 5px 10px;
+    border-radius: 20px;
     font-size: 13px;
-
-    font-weight: 600;
-
-    background: rgba(255,255,255,.06);
-
-    color: var(--text-muted);
-
-    border: 1px solid var(--border);
-
 }
 
-
-/* ------------------------------------------------------------
-   Waiting State
------------------------------------------------------------- */
-
-.agent-card.waiting {
-
-    opacity: .75;
-
-}
-
-.agent-card.waiting .status {
-
-    background: rgba(255,255,255,.06);
-
-}
-
-
-/* ------------------------------------------------------------
-   Running State
------------------------------------------------------------- */
+/* Pipeline States */
 
 .agent-card.running {
-
-    border-color: var(--primary);
-
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 0 25px rgba(59,130,246,.35);
-
-}
-
-.agent-card.running::before {
-
-    opacity: 1;
-
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59,130,246,.5);
 }
 
 .agent-card.running .status {
-
-    color: white;
-
-    background: var(--primary);
-
-    border-color: var(--primary);
-
-    animation: pulse 1.2s infinite;
-
+    background: #2563eb;
 }
-
-
-/* ------------------------------------------------------------
-   Completed State
------------------------------------------------------------- */
 
 .agent-card.completed {
-
-    border-color: var(--success);
-
-    box-shadow:
-        0 0 20px rgba(34,197,94,.25);
-
-}
-
-.agent-card.completed::before {
-
-    background: var(--success);
-
-    opacity: 1;
-
+    border-color: #22c55e;
 }
 
 .agent-card.completed .status {
-
-    background: var(--success);
-
-    color: white;
-
-    border-color: var(--success);
-
+    background: #16a34a;
 }
-
-
-/* ------------------------------------------------------------
-   Error State
------------------------------------------------------------- */
 
 .agent-card.error {
-
-    border-color: var(--danger);
-
-    box-shadow:
-        0 0 20px rgba(239,68,68,.30);
-
-}
-
-.agent-card.error::before {
-
-    background: var(--danger);
-
-    opacity: 1;
-
+    border-color: #ef4444;
 }
 
 .agent-card.error .status {
-
-    background: var(--danger);
-
-    color: white;
-
-    border-color: var(--danger);
-
+    background: #dc2626;
 }
 
+/* ==============================
+   Dashboard
+============================== */
 
-/* ------------------------------------------------------------
-   Hover
------------------------------------------------------------- */
-
-.agent-card:hover {
-
-    transform: translateY(-6px);
-
-    border-color: var(--primary);
-
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
 }
 
-
-/* ------------------------------------------------------------
-   Glow Ring
------------------------------------------------------------- */
-
-.agent-card.running::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -2px;
-
-    border-radius: inherit;
-
-    border: 2px solid rgba(59,130,246,.35);
-
-    animation: glowRing 1.6s infinite;
-
+.panel {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 18px;
 }
 
-
-/* ------------------------------------------------------------
-   Arrow Active
------------------------------------------------------------- */
-
-.arrow.active {
-
-    color: var(--success);
-
-    animation: arrowPulse 1s infinite;
-
+.panel h2 {
+    margin-bottom: 15px;
 }
 
-
-/* ------------------------------------------------------------
-   Pulse Animation
------------------------------------------------------------- */
-
-@keyframes pulse {
-
-    0% {
-
-        transform: scale(1);
-
-    }
-
-    50% {
-
-        transform: scale(1.08);
-
-    }
-
-    100% {
-
-        transform: scale(1);
-
-    }
-
+.panel div {
+    margin-bottom: 12px;
 }
 
+/* ==============================
+   Text Areas
+============================== */
 
-/* ------------------------------------------------------------
-   Glow Animation
------------------------------------------------------------- */
-
-@keyframes glowRing {
-
-    0% {
-
-        opacity: .2;
-
-        transform: scale(1);
-
-    }
-
-    50% {
-
-        opacity: .8;
-
-        transform: scale(1.03);
-
-    }
-
-    100% {
-
-        opacity: .2;
-
-        transform: scale(1);
-
-    }
-
+pre {
+    background: #020617;
+    border: 1px solid #334155;
+    padding: 12px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    min-height: 180px;
+    overflow-x: auto;
 }
 
+/* ==============================
+   Trust Boundary
+============================== */
 
-/* ------------------------------------------------------------
-   Arrow Animation
------------------------------------------------------------- */
-
-@keyframes arrowPulse {
-
-    0% {
-
-        transform: translateY(0);
-
-    }
-
-    50% {
-
-        transform: translateY(5px);
-
-    }
-
-    100% {
-
-        transform: translateY(0);
-
-    }
-
+#trustBoundary {
+    padding: 15px;
+    background: #172554;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    margin-bottom: 15px;
 }
 
-/* ------------------------------------------------------------
-   Mobile Pipeline
------------------------------------------------------------- */
+#decision {
+    color: #93c5fd;
+    font-weight: bold;
+}
 
-@media (max-width: 900px) {
+/* ==============================
+   Footer
+============================== */
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #94a3b8;
+    border-top: 1px solid #334155;
+    padding-top: 20px;
+}
+
+/* ==============================
+   Responsive
+============================== */
+
+@media (max-width: 1000px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
 
     .pipeline {
-
         flex-direction: column;
-
     }
 
     .arrow {
-
         transform: rotate(90deg);
+    }
 
-        margin: -6px 0;
+    .agent-card {
+        width: 100%;
+    }
 
+    .controls {
+        width: 100%;
+        justify-content: space-between;
     }
 
 }
