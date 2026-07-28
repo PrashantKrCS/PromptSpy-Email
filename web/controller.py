@@ -2,6 +2,7 @@ from agents.persona_agent import PersonaAgent
 from agents.profiling_agent import ProfilingAgent
 from agents.pretext_agent import PretextAgent
 from agents.content_generation_agent import ContentGenerationAgent
+from agents.context_generator import ContextGeneratorAgent
 
 from agents.email_delivery_agent import EmailDeliveryAgent
 from agents.ai_email_assistant import AIEmailAssistant
@@ -18,19 +19,11 @@ class SimulationController:
 
     def execute(self):
 
-        persona = PersonaAgent().run()
-
-        profile = ProfilingAgent().run()
-
-        pretext = PretextAgent().run({
-            "persona": persona,
-            "profile": profile
-        })
+      context = ContextGeneratorAgent().run()
 
         email = ContentGenerationAgent().run({
             "persona": persona,
-            "profile": profile,
-            "pretext": pretext
+            "context": context
         })
 
         inbox = EmailDeliveryAgent().run(email)
