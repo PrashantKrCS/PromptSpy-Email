@@ -1,53 +1,83 @@
 from agents.base_agent import BaseAgent
-from utils import log
 
 
 class IndirectPromptDemo(BaseAgent):
+    """
+    Educational simulation of how an AI system handles
+    instruction-like content embedded in an email.
 
-    def __init__(self, secure_mode=True):
-        super().__init__()
-        self.secure_mode = secure_mode
+    Modes
+    -----
+    Demonstration
+        Simulates a naïve implementation where instruction-like
+        content is treated as part of the input.
 
-    def run(self, parsed_email):
+    Secure
+        Simulates a protected implementation where instruction-like
+        content is isolated from visible email content.
+    """
+
+    def run(self, assistant_result, secure_mode=True):
 
         self.start()
 
-        visible = parsed_email["visible_text"]
-        metadata = parsed_email["metadata"]
+        simulation = assistant_result.get("simulation", {})
+        processing = assistant_result.get("processing", {})
 
-        print("\n========== Visible Content ==========\n")
-        print(visible)
+        simulation_present = simulation.get("present", False)
 
-        print("\n========== Metadata ==========\n")
-        print(metadata)
+        if secure_mode:
 
-        if self.secure_mode:
-
-            decision = {
+            result = {
                 "mode": "Secure",
-                "trusted_input": visible,
-                "untrusted_input": metadata,
-                "action": "Metadata kept separate from user-visible content."
-            }
 
-            log("Trust boundary enforced")
+                "status": "Protected",
+
+                "decision":
+                    "Instruction-like content isolated before AI processing.",
+
+                "reason":
+                    "Visible email content processed independently from simulation metadata.",
+
+                "actions": [
+                    "Read visible email",
+                    "Read metadata",
+                    "Detected simulation metadata",
+                    "Excluded simulation layer",
+                    "Generated summary from visible content only"
+                ],
+
+                "simulation_detected": simulation_present,
+
+                "processing": processing
+            }
 
         else:
 
-            decision = {
-                "mode": "Demo (Naïve)",
-                "combined_context": {
-                    "visible": visible,
-                    "metadata": metadata
-                },
-                "action": (
-                    "Illustration only: visible content and metadata "
-                    "are combined before reasoning."
-                )
-            }
+            result = {
+                "mode": "Demonstration",
 
-            log("Trust boundary not enforced (simulation)")
+                "status": "Naïve Pipeline",
+
+                "decision":
+                    "Simulation demonstrates how instruction-like content could influence downstream reasoning if not isolated.",
+
+                "reason":
+                    "No trust-boundary separation between visible content and embedded metadata.",
+
+                "actions": [
+                    "Read visible email",
+                    "Read metadata",
+                    "Simulation metadata observed",
+                    "No isolation applied",
+                    "Generated output using all available information (simulation)"
+                ],
+
+                "simulation_detected": simulation_present,
+
+                "processing": processing
+            }
 
         self.finish()
 
-        return decision
+        return result
