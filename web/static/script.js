@@ -1,162 +1,62 @@
-const startBtn = document.getElementById("startButton");
-const secureToggle = document.getElementById("secureToggle");
+const email=document.getElementById("email");
 
-const sender = document.getElementById("sender");
-const receiver = document.getElementById("receiver");
-const subject = document.getElementById("subject");
-const emailBody = document.getElementById("emailBody");
+const summary=document.getElementById("summary");
 
-const visibleContent = document.getElementById("visibleContent");
-const metadata = document.getElementById("metadata");
+const trust=document.getElementById("trust");
 
-const trustBoundary = document.getElementById("trustBoundary");
-const decision = document.getElementById("decision");
+const reply=document.getElementById("reply");
 
-const replyBox = document.getElementById("replyBox");
+const run=document.getElementById("run");
 
-const pipeline = [
-    "persona",
-    "profile",
-    "pretext",
-    "content",
-    "delivery",
-    "assistant",
-    "conversation",
-    "reply"
-];
+const secure=document.getElementById("secureToggle");
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-function resetPipeline() {
+run.onclick=async()=>{
 
-    pipeline.forEach(id => {
+const response=await fetch("/api/run",{
 
-        const card = document.getElementById(id);
+method:"POST",
 
-        card.className = "agent-card waiting";
+headers:{
 
-        card.querySelector(".status").innerText = "Waiting";
+"Content-Type":"application/json"
 
-    });
+},
 
-}
+body:JSON.stringify({
 
-async function animatePipeline() {
+secure_mode:secure.checked
 
-    for (const id of pipeline) {
+})
 
-        const card = document.getElementById(id);
+});
 
-        const status = card.querySelector(".status");
+const data=await response.json();
 
-        card.className = "agent-card running";
+email.textContent=
 
-        status.innerText = "Running";
+`From: ${data.email.sender}
 
-        await sleep(500);
+To: ${data.email.recipient}
 
-        card.className = "agent-card completed";
+Subject: ${data.email.subject}
 
-        status.innerText = "Completed";
+${data.email.body}`;
 
-    }
+summary.textContent=data.assistant.summary;
 
-}
+trust.textContent=
 
-function populate(result){
+`${data.trust.mode}
 
-    sender.innerText =
-        result.email.sender;
+${data.trust.status}
 
-    receiver.innerText =
-        result.email.recipient;
+${data.trust.decision}
 
-    subject.innerText =
-        result.email.subject;
+Timeline:
 
-    emailBody.innerText =
-        result.email.body;
+${data.trust.timeline.join("\n")}`;
 
-    visibleContent.innerText =
-        result.assistant.visible_text;
+reply.textContent=data.reply;
 
-    metadata.innerText =
-        JSON.stringify(
-            result.assistant.metadata,
-            null,
-            2
-        );
-
-    trustBoundary.innerText =
-        result.trust.mode;
-
-    decision.innerText =
-        result.trust.message;
-
-    replyBox.innerText =
-        result.reply;
-
-}
-
-async function runSimulation(){
-
-    resetPipeline();
-
-    startBtn.disabled = true;
-
-    startBtn.innerText = "Running...";
-
-    try{
-
-        const response =
-            await fetch("/api/run",{
-
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body:JSON.stringify({
-
-                    secure:
-                        secureToggle.checked
-
-                })
-
-            });
-
-        const result =
-            await response.json();
-
-        await animatePipeline();
-
-        populate(result);
-
-    }
-
-    catch(error){
-
-        alert("Unable to start simulation.");
-
-        console.error(error);
-
-    }
-
-    startBtn.disabled = false;
-
-    startBtn.innerText = "▶ Start Simulation";
-
-}
-
-startBtn.addEventListener(
-
-    "click",
-
-    runSimulation
-
-);
-
-resetPipeline();
+};
