@@ -7,6 +7,7 @@ from agents.persona_agent import PersonaAgent
 from agents.profiling_agent import ProfilingAgent
 from agents.pretext_agent import PretextAgent
 from agents.content_generation_agent import ContentGenerationAgent
+from agents.context_generator import ContextGeneratorAgent
 
 from agents.email_delivery_agent import EmailDeliveryAgent
 from agents.ai_email_assistant import AIEmailAssistant
@@ -38,16 +39,18 @@ def run_pipeline(secure_mode=True):
     # Profiling Agent
     # ------------------------
 
-    profile = ProfilingAgent().run()
+    #profile = ProfilingAgent().run()
 
     # ------------------------
     # Pretext Agent
     # ------------------------
 
-    pretext = PretextAgent().run({
-        "persona": persona,
-        "profile": profile
-    })
+    context = ContextGeneratorAgent().run()
+    
+   # pretext = PretextAgent().run({
+     #   "persona": persona,
+      #  "profile": profile
+    #})
 
     # ------------------------
     # Email Generation
@@ -55,8 +58,7 @@ def run_pipeline(secure_mode=True):
 
     email = ContentGenerationAgent().run({
         "persona": persona,
-        "profile": profile,
-        "pretext": pretext
+        "context" : context
     })
 
     # Example metadata for demonstration purposes
