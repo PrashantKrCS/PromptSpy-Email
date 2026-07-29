@@ -1,24 +1,22 @@
 """
-Global configuration for the AI Email Simulation.
+Global configuration for PromptSpy Email Simulation.
 """
 
-APP_NAME = "AI Email Simulation"
+APP_NAME = "PromptSpy Email Simulation"
+VERSION = "2.0"
 
-VERSION = "1.0"
+# Default execution mode
+DEFAULT_SECURE_MODE = True
 
-SIMULATION_DELAY = 1.0
+# Logging
+ENABLE_LOGGING = True
+LOG_TIME_FORMAT = "%H:%M:%S"
 
-LOG_LEVEL = "INFO"
+# Email Simulation
+DEFAULT_CLASSIFICATION = "Business"
+DEFAULT_PRIORITY = "Normal"
 
-SECURE_MODE = True
-
-EMAIL_TEMPLATE = "templates/email_template.txt"
-
-PROMPT_TEMPLATE = "templates/prompt_template.txt"
-
-DEFAULT_PERSONA = {
-    "name": "Sarah Johnson",
-    "title": "Project Manager",
-    "company": "Acme Technologies",
-    "email": "sarah@example.com"
-}
+# Web
+HOST = "127.0.0.1"
+PORT = 5000
+DEBUG = True
