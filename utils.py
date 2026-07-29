@@ -1,23 +1,19 @@
-import time
 from datetime import datetime
 
-def banner(title):
-
-    print("\n" + "=" * 60)
-    print(title.center(60))
-    print("=" * 60)
+from config import ENABLE_LOGGING
+from config import LOG_TIME_FORMAT
 
 
-def log(message):
+def log(message: str):
 
-    print(f"[{datetime.now().strftime('%H:%M:%S')}] {message}")
-
-
-def wait(seconds):
-
-    time.sleep(seconds)
+    if ENABLE_LOGGING:
+        print(
+            f"[{datetime.now().strftime(LOG_TIME_FORMAT)}] {message}"
+        )
 
 
-def separator():
+def divider(title):
 
-    print("-" * 60)
+    print("\n" + "=" * 65)
+    print(title.center(65))
+    print("=" * 65)
