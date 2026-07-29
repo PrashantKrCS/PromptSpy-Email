@@ -39,8 +39,8 @@ class IndirectPromptDemo(BaseAgent):
 
                 "ai_reasoning": "Simulation metadata excluded before summarization.",
 
-                #"decision":
-                #    "Instruction-like content isolated before summarization.",
+                "decision":
+                    "Instruction-like content isolated before summarization.",
 
                 #"reason":
                 #    "Only visible email content contributed to the summary.",
