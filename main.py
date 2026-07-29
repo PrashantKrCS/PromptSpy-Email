@@ -1,13 +1,18 @@
+import argparse
+
 from pipeline import SimulationPipeline
+from web.app import create_app
+
+from config import HOST
+from config import PORT
+from config import DEBUG
 
 from utils import divider
 
 
-def start_console():
+def console():
 
-    results = SimulationPipeline(
-        secure_mode=True
-    ).execute()
+    results = SimulationPipeline().execute()
 
     divider("Simulation Complete")
 
@@ -15,21 +20,43 @@ def start_console():
 
     print()
 
-    print("Summary:")
     print(results["assistant"]["summary"])
 
     print()
 
-    print("Trust Boundary:")
     print(results["trust"]["decision"])
 
     print()
 
-    print("Reply:")
-
     print(results["reply"])
+
+
+def web():
+
+    app = create_app()
+
+    app.run(
+        host=HOST,
+        port=PORT,
+        debug=DEBUG
+    )
 
 
 if __name__ == "__main__":
 
-    start_console()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--web",
+        action="store_true"
+    )
+
+    args = parser.parse_args()
+
+    if args.web:
+
+        web()
+
+    else:
+
+        console()
