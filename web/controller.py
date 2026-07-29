@@ -35,7 +35,7 @@ class SimulationController:
         inbox = EmailDeliveryAgent().run(email)
 
     # AI Assistant processes email
-        parsed = AIEmailAssistant().run(inbox)
+        parsed = AIEmailAssistant().run(inbox["email"])
 
     # Trust Boundary simulation
         trust = IndirectPromptDemo().run(
