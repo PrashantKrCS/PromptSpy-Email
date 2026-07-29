@@ -4,32 +4,33 @@ from flask import request
 
 from web.controller import SimulationController
 
-api = Blueprint(
-    "api",
-    __name__,
-    url_prefix="/api"
-)
+api = Blueprint("api", __name__)
 
 
-@api.route("/health")
+@api.route("/api/health")
 def health():
 
-    return jsonify({
-        "status": "ok"
-    })
-
-
-@api.route("/run", methods=["POST"])
-def run():
-
-    payload = request.get_json(silent=True) or {}
-
-    secure = payload.get("secure", True)
-
-    controller = SimulationController(
-        secure_mode=secure
+    return jsonify(
+        {
+            "status": "ok"
+        }
     )
 
-    result = controller.execute()
 
-    return jsonify(result)
+@api.route("/api/run", methods=["POST"])
+def run():
+
+    body = request.get_json(silent=True) or {}
+
+    secure_mode = body.get(
+        "secure_mode",
+        True
+    )
+
+    controller = SimulationController(
+        secure_mode=secure_mode
+    )
+
+    results = controller.execute()
+
+    return jsonify(results)
