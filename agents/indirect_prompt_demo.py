@@ -31,13 +31,21 @@ class IndirectPromptDemo(BaseAgent):
 
                 "status": "Protected",
 
-                "decision":
-                    "Instruction-like content isolated before summarization.",
+                "simulation_detected": True,
 
-                "reason":
+                "processing_state": "isolated",
+
+                "human_reasoning": "Visible email content only.",
+
+                "ai_reasoning": "Simulation metadata excluded before summarization.",
+
+                #"decision":
+                #    "Instruction-like content isolated before summarization.",
+
+                #"reason":
                     "Only visible email content contributed to the summary.",
 
-                "simulation_detected": detected,
+                #"simulation_detected": detected,
 
                 "timeline": [
 
@@ -65,13 +73,21 @@ class IndirectPromptDemo(BaseAgent):
 
                 "status": "Naive Pipeline",
 
+                "simulation_detected": True,
+
+                "processing_state": "not_isolated",
+
+                "human_reasoning": "Visible email content only.",
+
+                "ai_reasoning": "Simulation illustrates how a naïve implementation could allow instruction-like content to influence downstream reasoning if trust boundaries are absent.",
+
                 "decision":
                     "Simulation illustrates how instruction-like content could influence downstream processing if trust boundaries are absent.",
 
-                "reason":
-                    "Educational visualization only.",
+                #"reason":
+                #    "Educational visualization only.",
 
-                "simulation_detected": detected,
+                #"simulation_detected": detected,
 
                 "timeline": [
 
