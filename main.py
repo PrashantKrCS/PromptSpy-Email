@@ -60,11 +60,11 @@ def run_pipeline(secure_mode=True):
     })
 
     # Example metadata for demonstration purposes
-    email.metadata = {
-        "priority": "normal",
-        "classification": "business",
-        "simulation": True
-    }
+    #email.metadata = {
+    #    "priority": "normal",
+    #    "classification": "business",
+    #    "simulation": True
+    #}
 
     # ------------------------
     # Delivery
@@ -100,8 +100,7 @@ def run_pipeline(secure_mode=True):
 
     return {
         "persona": persona,
-        "profile": profile,
-        "pretext": pretext,
+        "context": context,
         "email": email,
         "parsed_email": parsed,
         "trust_boundary": trust_result,
