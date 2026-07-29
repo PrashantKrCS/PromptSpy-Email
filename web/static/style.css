@@ -1,234 +1,41 @@
-/* ==============================
-   Global
-============================== */
+body{
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+background:#111827;
+
+color:white;
+
+font-family:Arial;
+
+padding:40px;
+
 }
 
-body {
-    background: #0f172a;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+.container{
+
+max-width:900px;
+
+margin:auto;
+
 }
 
-.page {
-    width: 95%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 25px;
+button{
+
+padding:10px 20px;
+
+cursor:pointer;
+
+margin:20px 0;
+
 }
 
-h1, h2 {
-    margin-bottom: 10px;
-}
+pre{
 
-section {
-    margin-top: 30px;
-}
+background:#1f2937;
 
-/* ==============================
-   Header
-============================== */
+padding:15px;
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #334155;
-    padding-bottom: 20px;
-}
+border-radius:8px;
 
-.controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
-
-/* ==============================
-   Pipeline
-============================== */
-
-.pipeline {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.arrow {
-    font-size: 28px;
-    color: #60a5fa;
-}
-
-.agent-card {
-    width: 170px;
-    min-height: 110px;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    transition: .3s;
-}
-
-.agent-card h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-.status {
-    display: inline-block;
-    background: #475569;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-}
-
-/* Pipeline States */
-
-.agent-card.running {
-    border-color: #3b82f6;
-    box-shadow: 0 0 15px rgba(59,130,246,.5);
-}
-
-.agent-card.running .status {
-    background: #2563eb;
-}
-
-.agent-card.completed {
-    border-color: #22c55e;
-}
-
-.agent-card.completed .status {
-    background: #16a34a;
-}
-
-.agent-card.error {
-    border-color: #ef4444;
-}
-
-.agent-card.error .status {
-    background: #dc2626;
-}
-
-/* ==============================
-   Dashboard
-============================== */
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-
-.panel {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    padding: 18px;
-}
-
-.panel h2 {
-    margin-bottom: 15px;
-}
-
-.panel div {
-    margin-bottom: 12px;
-}
-
-/* ==============================
-   Text Areas
-============================== */
-
-pre {
-    background: #020617;
-    border: 1px solid #334155;
-    padding: 12px;
-    border-radius: 6px;
-    white-space: pre-wrap;
-    min-height: 180px;
-    overflow-x: auto;
-}
-
-/* ==============================
-   Trust Boundary
-============================== */
-
-#trustBoundary {
-    padding: 15px;
-    background: #172554;
-    border: 1px solid #2563eb;
-    border-radius: 6px;
-    margin-bottom: 15px;
-}
-
-#decision {
-    color: #93c5fd;
-    font-weight: bold;
-}
-
-/* ==============================
-   Footer
-============================== */
-
-footer {
-    margin-top: 40px;
-    text-align: center;
-    color: #94a3b8;
-    border-top: 1px solid #334155;
-    padding-top: 20px;
-}
-
-/* ==============================
-   Responsive
-============================== */
-
-@media (max-width: 1000px) {
-
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
-    }
-
-    .pipeline {
-        flex-direction: column;
-    }
-
-    .arrow {
-        transform: rotate(90deg);
-    }
-
-    .agent-card {
-        width: 100%;
-    }
-
-    .controls {
-        width: 100%;
-        justify-content: space-between;
-    }
+white-space:pre-wrap;
 
 }
