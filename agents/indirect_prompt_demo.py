@@ -43,7 +43,7 @@ class IndirectPromptDemo(BaseAgent):
                 #    "Instruction-like content isolated before summarization.",
 
                 #"reason":
-                    "Only visible email content contributed to the summary.",
+                #    "Only visible email content contributed to the summary.",
 
                 #"simulation_detected": detected,
 
