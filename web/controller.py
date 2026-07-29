@@ -20,52 +20,52 @@ class SimulationController:
     def execute(self):
 
     # Generate sender persona
-    persona = PersonaAgent().run()
+        persona = PersonaAgent().run()
 
     # Generate random email context
-    context = ContextGeneratorAgent().run()
+        context = ContextGeneratorAgent().run()
 
     # Generate email
-    email = ContentGenerationAgent().run({
+        email = ContentGenerationAgent().run({
         "persona": persona,
         "context": context
     })
 
     # Deliver email
-    inbox = EmailDeliveryAgent().run(email)
+        inbox = EmailDeliveryAgent().run(email)
 
     # AI Assistant processes email
-    parsed = AIEmailAssistant().run(inbox)
+        parsed = AIEmailAssistant().run(inbox)
 
     # Trust Boundary simulation
-    trust = IndirectPromptDemo().run(
-        parsed,
-        secure_mode=self.secure_mode
+        trust = IndirectPromptDemo().run(
+            parsed,
+            secure_mode=self.secure_mode
     )
 
     # Conversation simulation
-    conversation = ConversationAgent().run(parsed)
+        conversation = ConversationAgent().run(parsed)
 
     # AI reply generation
-    reply = ReplyGenerationAgent().run(conversation)
+        reply = ReplyGenerationAgent().run(conversation)
 
-    return {
-        "persona": vars(persona),
+        return {
+            "persona": vars(persona),
 
-        "context": context,
+            "context": context,
 
-        "email": {
-            "sender": email.sender,
-            "recipient": email.recipient,
-            "subject": email.subject,
-            "body": email.body,
-            "metadata": email.metadata,
-            "simulation": email.simulation
+            "email": {
+                "sender": email.sender,
+                "recipient": email.recipient,
+                "subject": email.subject,
+                "body": email.body,
+                "metadata": email.metadata,
+                "simulation": email.simulation
         },
 
-        "assistant": parsed,
+            "assistant": parsed,
 
-        "trust": trust,
+            "trust": trust,
 
-        "reply": reply
+            "reply": reply
     }
