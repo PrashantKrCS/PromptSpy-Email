@@ -1,23 +1,62 @@
+import random
+
 from agents.base_agent import BaseAgent
 from models.persona import Persona
-from config import DEFAULT_PERSONA
-from utils import log
 
 
 class PersonaAgent(BaseAgent):
 
-    def run(self, data=None):
+    PERSONAS = [
+
+        Persona(
+            "Sarah Johnson",
+            "Project Manager",
+            "Acme Technologies",
+            "sarah.johnson@acmetech.demo"
+        ),
+
+        Persona(
+            "Emily Davis",
+            "HR Manager",
+            "PeopleFirst HR",
+            "emily.davis@peoplefirst.demo"
+        ),
+
+        Persona(
+            "Michael Brown",
+            "Finance Lead",
+            "FinEdge Solutions",
+            "michael.brown@finedge.demo"
+        ),
+
+        Persona(
+            "Daniel Wilson",
+            "IT Administrator",
+            "CloudOps Systems",
+            "daniel.wilson@cloudops.demo"
+        ),
+
+        Persona(
+            "Sophia Miller",
+            "Travel Coordinator",
+            "SkyRoute Travel",
+            "sophia.miller@skyroute.demo"
+        ),
+
+        Persona(
+            "James Anderson",
+            "Customer Success Manager",
+            "Nova Software",
+            "james.anderson@novasoftware.demo"
+        )
+
+    ]
+
+    def run(self):
 
         self.start()
 
-        persona = Persona(
-            name=DEFAULT_PERSONA["name"],
-            title=DEFAULT_PERSONA["title"],
-            company=DEFAULT_PERSONA["company"],
-            email=DEFAULT_PERSONA["email"]
-        )
-
-        log("Generated fictional sender persona")
+        persona = random.choice(self.PERSONAS)
 
         self.finish()
 
