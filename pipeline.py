@@ -41,7 +41,8 @@ class SimulationPipeline:
 
         reply = ReplyGenerationAgent().run(
             conversation,
-            assistant
+            assistant,
+            trust
         )
 
         return {
