@@ -1,11 +1,14 @@
 from agents.base_agent import BaseAgent
 from models.conversation import Conversation
-from utils import log
 
 
 class ConversationAgent(BaseAgent):
 
-    def run(self, parsed_email):
+    """
+    Simulates an email conversation thread.
+    """
+
+    def run(self, assistant_result):
 
         self.start()
 
@@ -13,10 +16,13 @@ class ConversationAgent(BaseAgent):
 
         conversation.add(
             "Email",
-            parsed_email["visible_text"]["body"]
+            assistant_result["visible_text"]["body"]
         )
 
-        log("Conversation context created")
+        conversation.add(
+            "AI Summary",
+            assistant_result["summary"]
+        )
 
         self.finish()
 
