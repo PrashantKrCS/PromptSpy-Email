@@ -1,31 +1,30 @@
 from agents.base_agent import BaseAgent
-from utils import log
 
 
 class ReplyGenerationAgent(BaseAgent):
 
-    def run(self, conversation):
+    """
+    Generates a simple AI-assisted reply.
+    """
+
+    def run(self, conversation, assistant_result):
 
         self.start()
 
-        reply = """
-Hi Sarah,
+        sender = assistant_result["sender"]
+
+        if "<" in sender:
+            sender = sender.split("<")[0].strip()
+
+        reply = f"""Hi {sender},
 
 Thank you for your email.
 
-I'd be happy to schedule some time next week.
+I've reviewed the information and will follow up shortly if any additional action is required.
 
-Regards,
-
-John
+Best regards,
+AI Email Assistant
 """
-
-        conversation.add(
-            "Assistant",
-            reply
-        )
-
-        log("Reply generated")
 
         self.finish()
 
