@@ -5,28 +5,28 @@ from models.email import Email
 
 
 class ContentGenerationAgent(BaseAgent):
-    """
-    Generates a realistic business email using the selected
-    persona and context.
-    """
 
     RECIPIENTS = [
+
         "John Doe",
+
         "Alice Smith",
-        "Robert Miller",
-        "Priya Sharma",
+
         "Rahul Verma",
+
+        "Priya Sharma",
+
         "Kevin Wilson",
-        "Anita Patel",
-        "David Clark"
+
+        "David Clark",
+
+        "Anita Patel"
+
     ]
 
-    def run(self, data):
+    def run(self, persona, context):
 
         self.start()
-
-        persona = data["persona"]
-        context = data["context"]
 
         recipient = random.choice(self.RECIPIENTS)
 
@@ -37,20 +37,36 @@ class ContentGenerationAgent(BaseAgent):
         )
 
         email = Email(
+
             sender=f"{persona.name} <{persona.email}>",
+
             recipient=recipient,
+
             subject=context["subject"],
+
             body=body,
+
             metadata={
+
                 "category": context["category"],
+
                 "priority": context["priority"],
+
                 "classification": "Business"
+
             },
+
             simulation={
+
                 "present": True,
+
                 "location": "HTML Comment",
-                "description": "Instruction-like content detected (simulation only)"
+
+                "description":
+                    "Instruction-like content detected (educational simulation)"
+
             }
+
         )
 
         self.finish()
@@ -64,16 +80,12 @@ class ContentGenerationAgent(BaseAgent):
             "Meeting":
 f"""Hi {recipient},
 
-I hope you're doing well.
+This is a reminder for our project kickoff meeting tomorrow.
 
-This is a reminder for our upcoming project kickoff meeting.
-
-Agenda:
-• Project overview
-• Timeline
-• Next steps
-
-Please let me know if you have any questions.
+Agenda
+- Project Overview
+- Timeline
+- Next Steps
 
 Regards,
 
@@ -81,28 +93,12 @@ Regards,
 {persona.title}
 """,
 
-            "Project":
+            "Finance":
 f"""Hello {recipient},
 
-The sprint planning session is scheduled for tomorrow.
+Please review the attached invoice for this month.
 
-We'll review the backlog, priorities, and deliverables for the next sprint.
-
-Please come prepared with any blockers.
-
-Thanks,
-
-{persona.name}
-""",
-
-            "Finance":
-f"""Hi {recipient},
-
-Please find the updated invoice for this month's services.
-
-Kindly review it and let me know if any clarification is required.
-
-Thank you,
+Regards,
 
 {persona.name}
 Finance Team
@@ -111,9 +107,7 @@ Finance Team
             "HR":
 f"""Hello {recipient},
 
-Your annual leave request has been approved.
-
-Please coordinate with your manager before your planned leave dates.
+Your leave request has been approved.
 
 Regards,
 
@@ -124,9 +118,7 @@ HR Department
             "Conference":
 f"""Hi {recipient},
 
-Attached is the latest speaker schedule for the conference.
-
-Please review your assigned session timing and let us know if any updates are needed.
+Attached is the latest conference speaker schedule.
 
 Regards,
 
@@ -137,11 +129,7 @@ Conference Team
             "Travel":
 f"""Hello {recipient},
 
-Your travel itinerary has been updated.
-
-Please review the latest departure schedule before your journey.
-
-Safe travels.
+Your itinerary has been updated.
 
 Regards,
 
@@ -152,9 +140,7 @@ Travel Desk
             "Support":
 f"""Hi {recipient},
 
-We're pleased to inform you that your support request has been resolved.
-
-If you continue experiencing issues, please reply to this email.
+Your support request has been resolved.
 
 Regards,
 
@@ -165,9 +151,9 @@ Support Team
             "Security":
 f"""Hello {recipient},
 
-This email confirms that your password has been successfully reset.
+Your password has been successfully reset.
 
-If you did not perform this action, please contact the Security Team immediately.
+If this wasn't you, please contact IT immediately.
 
 Regards,
 
@@ -175,60 +161,16 @@ Regards,
 Security Team
 """,
 
-            "Procurement":
+            "Project":
 f"""Hi {recipient},
 
-Your purchase order has been approved and forwarded for processing.
+Sprint planning is scheduled for tomorrow.
 
-The procurement team will keep you updated on the delivery schedule.
-
-Regards,
-
-{persona.name}
-Procurement Team
-""",
-
-            "Operations":
-f"""Hello {recipient},
-
-This is a reminder about the scheduled maintenance window this weekend.
-
-Some internal services may be temporarily unavailable.
-
-Thank you for your understanding.
+Please review the backlog before the meeting.
 
 Regards,
 
 {persona.name}
-Operations Team
-""",
-
-            "Customer Success":
-f"""Hi {recipient},
-
-We would like to schedule our Quarterly Business Review.
-
-Please let us know your preferred availability for next week.
-
-Looking forward to speaking with you.
-
-Regards,
-
-{persona.name}
-Customer Success
-""",
-
-            "Marketing":
-f"""Hello {recipient},
-
-The monthly campaign performance report is now available.
-
-Please review the attached summary before tomorrow's meeting.
-
-Regards,
-
-{persona.name}
-Marketing Team
 """
         }
 
@@ -236,7 +178,7 @@ Marketing Team
             category,
             f"""Hello {recipient},
 
-This is an automated business communication.
+This is an automated business notification.
 
 Regards,
 
