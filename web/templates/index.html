@@ -1,424 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
+<title>PromptSpy Email Simulation</title>
 
-    <title>AI Email Security Simulation</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet"
+href="/static/style.css">
 
 </head>
 
 <body>
 
-<div class="page">
+<div class="container">
 
-    <!-- ===================================== -->
-    <!-- Header -->
-    <!-- ===================================== -->
+<h1>PromptSpy Email Simulation</h1>
 
-    <header>
+<label>
 
-        <div>
+<input
+type="checkbox"
+id="secureToggle"
+checked>
 
-            <h1>
-                AI Email Security Simulation
-            </h1>
+Secure Mode
 
-            <p>
-                Multi-Agent Email Workflow Demonstration
-            </p>
+</label>
 
-        </div>
+<button id="run">
 
-        <div class="controls">
+Run Simulation
 
-            <label>
+</button>
 
-                Secure Mode
+<hr>
 
-                <input
-                    id="secureToggle"
-                    type="checkbox"
-                    checked>
+<h2>Email</h2>
 
-            </label>
+<pre id="email"></pre>
 
-            <button id="startButton">
+<h2>AI Summary</h2>
 
-                ▶ Start Simulation
+<pre id="summary"></pre>
 
-            </button>
+<h2>Trust Boundary</h2>
 
-        </div>
+<pre id="trust"></pre>
 
-    </header>
+<h2>Reply</h2>
 
-
-    <!-- ===================================== -->
-    <!-- Pipeline -->
-    <!-- ===================================== -->
-
-    <section>
-
-        <h2>
-
-            Multi-Agent Pipeline
-
-        </h2>
-
-        <div class="pipeline">
-
-            <div class="agent-card"
-                 id="persona">
-
-                <h3>Persona Agent</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="profile">
-
-                <h3>Profiling Agent</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="pretext">
-
-                <h3>Pretext Agent</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="content">
-
-                <h3>Content Generation</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="delivery">
-
-                <h3>Email Delivery</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="assistant">
-
-                <h3>AI Email Assistant</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="conversation">
-
-                <h3>Conversation Agent</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-            <div class="arrow">
-
-                ↓
-
-            </div>
-
-            <div class="agent-card"
-                 id="reply">
-
-                <h3>Reply Generation</h3>
-
-                <span class="status">
-
-                    Waiting
-
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- Dashboard -->
-    <!-- ===================================== -->
-
-    <section class="dashboard">
-
-        <!-- Left -->
-
-        <div class="panel">
-
-            <h2>
-
-                Generated Email
-
-            </h2>
-
-            <div class="email">
-
-                <div>
-
-                    <strong>From</strong>
-
-                    <p id="sender"></p>
-
-                </div>
-
-                <div>
-
-                    <strong>To</strong>
-
-                    <p id="receiver"></p>
-
-                </div>
-
-                <div>
-
-                    <strong>Subject</strong>
-
-                    <p id="subject"></p>
-
-                </div>
-
-                <hr>
-
-                <pre id="emailBody">
-
-Waiting...
-
-                </pre>
-
-            </div>
-
-        </div>
-
-
-        <!-- Center -->
-
-        <div class="panel">
-
-            <h2>
-
-                AI Assistant
-
-            </h2>
-
-            <div>
-
-                <h3>
-
-                    Visible Content
-
-                </h3>
-
-                <pre id="visibleContent">
-
-Waiting...
-
-                </pre>
-
-            </div>
-
-            <div>
-
-                <h3>
-
-                    Metadata
-
-                </h3>
-
-                <pre id="metadata">
-
-Waiting...
-
-                </pre>
-
-            </div>
-
-        </div>
-
-
-        <!-- Right -->
-
-        <div class="panel">
-
-            <h2>
-
-                Trust Boundary
-
-            </h2>
-
-            <div id="trustBoundary">
-
-                Waiting...
-
-            </div>
-
-            <hr>
-
-            <h3>
-
-                Decision
-
-            </h3>
-
-            <div id="decision">
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- Reply -->
-    <!-- ===================================== -->
-
-    <section>
-
-        <h2>
-
-            AI Generated Reply
-
-        </h2>
-
-        <pre id="replyBox">
-
-Waiting...
-
-        </pre>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- Event Log -->
-    <!-- ===================================== -->
-
-    <section>
-
-        <h2>
-
-            Live Execution Log
-
-        </h2>
-
-        <div id="logs">
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================== -->
-    <!-- Footer -->
-    <!-- ===================================== -->
-
-    <footer>
-
-        Educational Simulation
-
-        |
-
-        Demonstrates AI Workflow & Trust Boundary
-
-    </footer>
+<pre id="reply"></pre>
 
 </div>
 
-
-<script
-src="{{ url_for('static', filename='script.js') }}">
-</script>
+<script src="/static/script.js"></script>
 
 </body>
 
