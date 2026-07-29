@@ -1,22 +1,18 @@
 from dataclasses import dataclass, field
 
+from typing import List
+
 
 @dataclass
 class Conversation:
 
-    history: list = field(default_factory=list)
+    messages: List = field(default_factory=list)
 
-    def add(self, speaker, message):
+    def add(self, role, content):
 
-        self.history.append({
-            "speaker": speaker,
-            "message": message
-        })
-
-    def show(self):
-
-        for item in self.history:
-
-            print(
-                f"{item['speaker']}: {item['message']}"
-            )
+        self.messages.append(
+            {
+                "role": role,
+                "content": content
+            }
+        )
