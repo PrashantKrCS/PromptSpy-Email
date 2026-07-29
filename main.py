@@ -1,170 +1,35 @@
-"""
-AI Email Simulation
-Main Entry Point
-"""
+from pipeline import SimulationPipeline
 
-from agents.persona_agent import PersonaAgent
-from agents.content_generation_agent import ContentGenerationAgent
-from agents.context_generator import ContextGeneratorAgent
-
-from agents.email_delivery_agent import EmailDeliveryAgent
-from agents.ai_email_assistant import AIEmailAssistant
-from agents.conversation_agent import ConversationAgent
-from agents.reply_generation_agent import ReplyGenerationAgent
-from agents.indirect_prompt_demo import IndirectPromptDemo
-
-from web.app import create_app
-
-import argparse
-
-
-def run_pipeline(secure_mode=True):
-    """
-    Execute the complete simulation pipeline.
-    """
-
-    print("=" * 70)
-    print("AI EMAIL SECURITY SIMULATION")
-    print("=" * 70)
-
-    # ------------------------
-    # Persona Agent
-    # ------------------------
-
-    persona = PersonaAgent().run()
-
-    # ------------------------
-    # Profiling Agent
-    # ------------------------
-
-    #profile = ProfilingAgent().run()
-
-    # ------------------------
-    # Pretext Agent
-    # ------------------------
-
-    context = ContextGeneratorAgent().run()
-    
-   # pretext = PretextAgent().run({
-     #   "persona": persona,
-      #  "profile": profile
-    #})
-
-    # ------------------------
-    # Email Generation
-    # ------------------------
-
-    email = ContentGenerationAgent().run({
-        "persona": persona,
-        "context" : context
-    })
-
-    # Example metadata for demonstration purposes
-    #email.metadata = {
-    #    "priority": "normal",
-    #    "classification": "business",
-    #    "simulation": True
-    #}
-
-    # ------------------------
-    # Delivery
-    # ------------------------
-
-    inbox = EmailDeliveryAgent().run(email)
-
-    # ------------------------
-    # AI Assistant
-    # ------------------------
-
-    parsed = parsed = AIEmailAssistant().run(inbox["email"])
-
-    # ------------------------
-    # Trust Boundary Demo
-    # ------------------------
-
-    trust_result = IndirectPromptDemo.run(
-        parsed,
-        secure_mode=secure_mode
-    )
-
-    # ------------------------
-    # Conversation
-    # ------------------------
-
-    conversation = ConversationAgent().run(parsed)
-
-    # ------------------------
-    # Reply
-    # ------------------------
-
-    reply = ReplyGenerationAgent().run(conversation)
-
-    return {
-        "persona": persona,
-        "context": context,
-        "email": email,
-        "parsed_email": parsed,
-        "trust_boundary": trust_result,
-        "conversation": conversation,
-        "reply": reply
-    }
+from utils import divider
 
 
 def start_console():
 
-    print("\nRunning Console Simulation...\n")
-
-    results = run_pipeline(
+    results = SimulationPipeline(
         secure_mode=True
-    )
+    ).execute()
 
-    print("\n")
-    print("=" * 70)
-    print("FINAL EMAIL")
-    print("=" * 70)
+    divider("Simulation Complete")
 
     print(results["email"].render())
 
-    print("\n")
-    print("=" * 70)
-    print("GENERATED REPLY")
-    print("=" * 70)
+    print()
+
+    print("Summary:")
+    print(results["assistant"]["summary"])
+
+    print()
+
+    print("Trust Boundary:")
+    print(results["trust"]["decision"])
+
+    print()
+
+    print("Reply:")
 
     print(results["reply"])
 
 
-def start_web():
-
-    print("Starting Flask Dashboard...")
-
-    app = create_app()
-
-    app.run(
-        host="127.0.0.1",
-        port=5000,
-        debug=True
-    )
-
-
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--mode",
-        choices=[
-            "console",
-            "web"
-        ],
-        default="console"
-    )
-
-    args = parser.parse_args()
-
-    if args.mode == "console":
-
-        start_console()
-
-    else:
-
-        start_web()
+    start_console()
