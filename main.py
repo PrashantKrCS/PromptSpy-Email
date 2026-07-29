@@ -82,9 +82,10 @@ def run_pipeline(secure_mode=True):
     # Trust Boundary Demo
     # ------------------------
 
-    trust_result = IndirectPromptDemo(
+    trust_result = IndirectPromptDemo.run(
+        parsed,
         secure_mode=secure_mode
-    ).run(parsed)
+    )
 
     # ------------------------
     # Conversation
