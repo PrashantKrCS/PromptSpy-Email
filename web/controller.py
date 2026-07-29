@@ -19,37 +19,53 @@ class SimulationController:
 
     def execute(self):
 
-      context = ContextGeneratorAgent().run()
+    # Generate sender persona
+    persona = PersonaAgent().run()
 
-        email = ContentGenerationAgent().run({
-            "persona": persona,
-            "context": context
-        })
+    # Generate random email context
+    context = ContextGeneratorAgent().run()
 
-        inbox = EmailDeliveryAgent().run(email)
+    # Generate email
+    email = ContentGenerationAgent().run({
+        "persona": persona,
+        "context": context
+    })
 
-        parsed = AIEmailAssistant().run(inbox)
+    # Deliver email
+    inbox = EmailDeliveryAgent().run(email)
 
-        trust = IndirectPromptDemo(
-            secure_mode=self.secure_mode
-        ).run(parsed)
+    # AI Assistant processes email
+    parsed = AIEmailAssistant().run(inbox)
 
-        conversation = ConversationAgent().run(parsed)
+    # Trust Boundary simulation
+    trust = IndirectPromptDemo().run(
+        parsed,
+        secure_mode=self.secure_mode
+    )
 
-        reply = ReplyGenerationAgent().run(conversation)
+    # Conversation simulation
+    conversation = ConversationAgent().run(parsed)
 
-        return {
-            "persona": vars(persona),
-            "profile": vars(profile),
-            "pretext": pretext,
-            "email": {
-                "sender": email.sender,
-                "recipient": email.recipient,
-                "subject": email.subject,
-                "body": email.body,
-                "metadata": email.metadata
-            },
-            "assistant": parsed,
-            "trust": trust,
-            "reply": reply
-        }
+    # AI reply generation
+    reply = ReplyGenerationAgent().run(conversation)
+
+    return {
+        "persona": vars(persona),
+
+        "context": context,
+
+        "email": {
+            "sender": email.sender,
+            "recipient": email.recipient,
+            "subject": email.subject,
+            "body": email.body,
+            "metadata": email.metadata,
+            "simulation": email.simulation
+        },
+
+        "assistant": parsed,
+
+        "trust": trust,
+
+        "reply": reply
+    }
