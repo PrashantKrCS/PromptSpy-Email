@@ -1,27 +1,17 @@
-from abc import ABC
-from abc import abstractmethod
-
-from utils import banner
+from utils import divider
 from utils import log
 
 
-class BaseAgent(ABC):
+class BaseAgent:
 
-    def __init__(self):
-
-        self.name = self.__class__.__name__
+    name = "BaseAgent"
 
     def start(self):
 
-        banner(self.name)
+        divider(self.__class__.__name__)
 
         log("Starting agent...")
 
     def finish(self):
 
         log("Completed.")
-
-    @abstractmethod
-    def run(self, data):
-
-        pass
