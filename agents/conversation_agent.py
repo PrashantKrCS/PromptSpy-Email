@@ -13,7 +13,7 @@ class ConversationAgent(BaseAgent):
 
         conversation.add(
             "Email",
-            parsed_email["visible_text"]
+            parsed_email["visible_text"]["body"]
         )
 
         log("Conversation context created")
