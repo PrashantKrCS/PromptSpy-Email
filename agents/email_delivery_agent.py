@@ -1,5 +1,7 @@
+from datetime import datetime
+import uuid
+
 from agents.base_agent import BaseAgent
-from utils import log
 
 
 class EmailDeliveryAgent(BaseAgent):
@@ -9,12 +11,12 @@ class EmailDeliveryAgent(BaseAgent):
         self.start()
 
         inbox = {
+            "message_id": str(uuid.uuid4())[:8],
             "folder": "Inbox",
             "status": "Delivered",
+            "received_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "email": email
         }
-
-        log("Email delivered to simulated inbox")
 
         self.finish()
 
