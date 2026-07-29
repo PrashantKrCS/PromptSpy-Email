@@ -2,27 +2,41 @@ from agents.base_agent import BaseAgent
 
 
 class AIEmailAssistant(BaseAgent):
-    """
-    Simulates how an AI email assistant processes an incoming email.
 
-    Responsibilities:
-    - Read visible email content
-    - Extract metadata
-    - Preserve simulation metadata
-    - Prepare structured data for the Trust Boundary demo
+    """
+    Simulates an AI assistant reading an email.
+
+    It separates:
+
+    • Visible content
+    • Metadata
+    • Simulation metadata
+
+    without making any security decision.
     """
 
-    def run(self, email):
+    def run(self, inbox):
 
         self.start()
 
-        assistant_result = {
+        email = inbox["email"]
+
+        result = {
+
+            "message_id": inbox["message_id"],
+
             "sender": email.sender,
+
             "recipient": email.recipient,
+
             "subject": email.subject,
 
+            "summary": self._summarize(email),
+
             "visible_text": {
+
                 "body": email.body
+
             },
 
             "metadata": email.metadata,
@@ -30,68 +44,55 @@ class AIEmailAssistant(BaseAgent):
             "simulation": email.simulation,
 
             "processing": {
-                "visible_content_processed": True,
-                "metadata_processed": True,
-                "simulation_detected": email.simulation.get(
-                    "present",
-                    False
-                )
-            },
 
-            "summary": self._summarize(email)
+                "visible_processed": True,
+
+                "metadata_processed": True,
+
+                "simulation_detected":
+                    email.simulation.get("present", False)
+
+            }
+
         }
 
         self.finish()
 
-        return assistant_result
+        return result
 
     def _summarize(self, email):
 
-        category = email.metadata.get(
-            "category",
-            "General"
-        )
+        category = email.metadata.get("category", "Business")
 
         summaries = {
 
             "Meeting":
-                "Meeting invitation received requiring attendee review.",
-
-            "Project":
-                "Project planning update requiring team attention.",
+                "Meeting invitation requiring attendee review.",
 
             "Finance":
-                "Finance-related communication regarding an invoice.",
+                "Invoice notification received.",
 
             "HR":
-                "Human Resources notification received.",
+                "HR notification received.",
 
             "Conference":
-                "Conference schedule shared with participants.",
+                "Conference schedule shared.",
 
             "Travel":
-                "Travel itinerary update requiring confirmation.",
+                "Travel itinerary updated.",
 
             "Support":
-                "Support ticket resolution notification received.",
+                "Support ticket update received.",
 
             "Security":
-                "Security-related notification received.",
+                "Security notification received.",
 
-            "Procurement":
-                "Purchase order approval notification received.",
+            "Project":
+                "Project planning update received."
 
-            "Operations":
-                "Operational maintenance notification received.",
-
-            "Customer Success":
-                "Customer meeting invitation received.",
-
-            "Marketing":
-                "Marketing performance report shared."
         }
 
         return summaries.get(
             category,
-            "Business email processed successfully."
+            "Business email processed."
         )
