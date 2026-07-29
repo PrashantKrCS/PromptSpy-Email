@@ -4,8 +4,6 @@ Main Entry Point
 """
 
 from agents.persona_agent import PersonaAgent
-from agents.profiling_agent import ProfilingAgent
-from agents.pretext_agent import PretextAgent
 from agents.content_generation_agent import ContentGenerationAgent
 from agents.context_generator import ContextGeneratorAgent
 
@@ -78,7 +76,7 @@ def run_pipeline(secure_mode=True):
     # AI Assistant
     # ------------------------
 
-    parsed = AIEmailAssistant().run(inbox)
+    parsed = parsed = AIEmailAssistant().run(inbox["email"])
 
     # ------------------------
     # Trust Boundary Demo
