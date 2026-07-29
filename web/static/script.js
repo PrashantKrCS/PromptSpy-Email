@@ -57,6 +57,10 @@ Timeline:
 
 ${data.trust.timeline.join("\n")}`;
 
-reply.textContent=data.reply;
+humanReply.textContent =
+    data.reply.human_reply;
+
+aiReply.textContent =
+    data.reply.ai_reply;
 
 };
